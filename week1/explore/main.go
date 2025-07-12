@@ -9,14 +9,6 @@ import (
 	"strings"
 )
 
-func celciusToFahrenheit(temp float32) float32 {
-	return temp*9/5 + 32
-}
-
-func celciusToReamur(temp float32) float32 {
-	return temp * 4 / 5
-}
-
 func readTemperature() (float32, error) {
 	reader := bufio.NewReader(os.Stdin)
 	suhuInput, err := reader.ReadString('\n')
@@ -37,20 +29,12 @@ func readTemperature() (float32, error) {
 }
 
 func main() {
-	fmt.Println("--- Konverter Suhu ---")
 	fmt.Print("Masukkan suhu dalam Celcius: ")
-
 	suhuCelcius, error := readTemperature()
 
-	//var suhu float32 = 23
-
 	if error != nil {
-		fmt.Println(error)
+		fmt.Println("Error: ", error)
 	} else {
-		suhuReamur := celciusToReamur(float32(suhuCelcius))
-		suhuFahrenheit := celciusToFahrenheit(float32(suhuCelcius))
-
-		fmt.Println("Suhu dalam Reamur: ", suhuReamur)
-		fmt.Println("Suhu dalam Fahrenheit: ", suhuFahrenheit)
+		fmt.Println("Suhu dalam Celcius: ", suhuCelcius)
 	}
 }
