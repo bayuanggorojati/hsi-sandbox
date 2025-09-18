@@ -10,7 +10,7 @@ Pada dasarnya, implementasi *clean architecture* dengan *Fiber* pada fungsi-fung
 
 ### Relasi tipe data buku dan peminjam
 
-Pertama, saya asumsi bahwa transaksi peminjaman memiliki relasi *one-to-many* dengan tipe data buku. Alasan saya adalah seseorang bisa meminjam lebih dari satu buku pada satu kali transaksi peminjaman. Untuk implementasinya, saya merujuk pada informasi dari dokumentasi *GORM* [di sini] (https://gorm.io/docs/has_many.html). Untuk lebih detilnya, implementasi kedua tipe data (buku dan peminjam) adalah sebagai berikut:
+Pertama, saya asumsi bahwa transaksi peminjaman memiliki relasi *one-to-many* dengan tipe data buku. Alasan saya adalah seseorang bisa meminjam lebih dari satu buku pada satu kali transaksi peminjaman. Untuk implementasinya, saya merujuk pada informasi dari dokumentasi *GORM* [di sini](https://gorm.io/docs/has_many.html). Untuk lebih detilnya, implementasi kedua tipe data (buku dan peminjam) adalah sebagai berikut:
 
 ```
 type Peminjam struct {
@@ -34,7 +34,10 @@ Pada kode di atas, **PeminjamID** merupakan *foreign key* dan seseorang dapat me
 
 ### Tipe data *Date* dan penulisannya di **JSON**
 
-Pertama, seperti yang sudah terlihat pada potongan kode di atas, Tanggal Peminjaman dan Pengembalian diimplementasikan dengan tipe data **time.Time**. Namun, ada hal lain yang perlu ditambahkan pada struct *Peminjaman* tersebut seperti yang dijelaskan pada [dokumentasi Fiber] (https://docs.gofiber.io/api/ctx/#bodyparser) > For example, if you want to parse a JSON body with a field called Pass, you would use a struct field of `json:"pass"`. Bentuk final tipe data Peminjam setelah menambahkan *struct field json* adalah sebagai berikut:
+Pertama, seperti yang sudah terlihat pada potongan kode di atas, Tanggal Peminjaman dan Pengembalian diimplementasikan dengan tipe data **time.Time**. Namun, ada hal lain yang perlu ditambahkan pada struct *Peminjaman* tersebut seperti yang dijelaskan pada [dokumentasi Fiber](https://docs.gofiber.io/api/ctx/#bodyparser), seperti berikut:
+> For example, if you want to parse a JSON body with a field called Pass, you would use a struct field of `json:"pass"`. 
+
+Bentuk final tipe data Peminjam setelah menambahkan *struct field json* adalah sebagai berikut:
 
 ```
 type Peminjam struct {
@@ -46,7 +49,7 @@ type Peminjam struct {
 }
 ```
 
-Kedua, format penulisan tipe data *date/time* pada *JSON Body* juga sangat penting, karena jika format penulisan tidak sesuai standar, maka field tersebut tidak dapat di-*parse* dengan benar ke struct *Peminjam*. Standar atau konsensus format penulisan *date/time* pada *JSON* adalah **ISO 8601** (baca [artikel ini] (https://docs.jsonata.org/date-time)). Jadi, contoh penulisannya adalah sebagai berikut: `"2025-09-18T10:00:00.000Z"`.
+Kedua, format penulisan tipe data *date/time* pada *JSON Body* juga sangat penting, karena jika format penulisan tidak sesuai standar, maka field tersebut tidak dapat di-*parse* dengan benar ke struct *Peminjam*. Standar atau konsensus format penulisan *date/time* pada *JSON* adalah **ISO 8601** (baca [artikel ini](https://docs.jsonata.org/date-time)). Jadi, contoh penulisannya adalah sebagai berikut: `"2025-09-18T10:00:00.000Z"`. Contoh lebih lengkap dapat dilihat pada contoh JSON Body pada Daftar API di bawah.
 
 ## Daftar API
 
