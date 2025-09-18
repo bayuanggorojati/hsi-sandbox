@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// definisikan koneksi database
-	dsn := "root:password123@tcp(172.16.202.130:3306)/hsisandbox?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "coba:Password123!@tcp(172.16.202.130:3306)/hsisandbox?charset=utf8mb4&parseTime=True&loc=Local"
 	// 2. Membuat Koneksi Database
 	koneksiDb, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -69,7 +69,7 @@ func main() {
 
 	// delete one of the employees from database
 	var hapusEmployee2 pegawai.Employee
-	koneksiDb.First(&hapusEmployee2, 2)
+	koneksiDb.First(&hapusEmployee2, 17)
 	koneksiDb.Delete(&hapusEmployee2)
 	fmt.Println("Data pegawai ID:2 dihapus", hapusEmployee2)
 	fmt.Printf("Gaji tahunan pegawai yang baru dihapus %.f\n", hapusEmployee2.HitungGajiTahunan())
